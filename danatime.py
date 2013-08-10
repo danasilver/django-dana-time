@@ -54,9 +54,9 @@ def danatime(value):
           ) % {'hour': value.time().hour % 12, 
           'minute': value.time().minute} + value.strftime("%p").lower()
     elif is_this_year:
-      return _(value.strftime("%d %b").lstrip('0'))
+      return _(value.strftime("%b %d").lstrip('0'))
     else:
       return _("%(day)d/%(month)d/%(year)d"
         ) % {'day': value.date().day, 
         'month': value.date().month, 
-        'year': value.date().year}
+        'year': int(str(value.date().year)[2:])}
