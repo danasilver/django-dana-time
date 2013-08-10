@@ -19,13 +19,13 @@ def danatime(value):
     is_today = True
 
   is_this_year = False
-  if value.date().year = datetime.today().year:
+  if value.date().year == datetime.today().year:
     is_this_year = True
 
   if value < now:
     # Check that value is in the past
     delta = now - value
-    elif delta.seconds == 0:
+    if delta.seconds == 0:
       # Now
       return _('now')
     elif delta.seconds < 60:
@@ -54,7 +54,7 @@ def danatime(value):
           ) % {'hour': value.time().hour % 12, 
           'minute': value.time().minute} + value.strftime("%p").lower()
     elif is_this_year:
-      return _(value.strftime("%b %d").lstrip('0'))
+      return _(value.strftime("%b ")) + "%(date)d" % {'date': value.date().day}
     else:
       return _("%(day)d/%(month)d/%(year)d"
         ) % {'day': value.date().day, 
