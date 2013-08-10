@@ -1,5 +1,4 @@
 from django import template
-from django.template import defaultfilters
 from django.utils.translation import pgettext, ungettext, ugettext as _
 from django.utils.timezone import is_aware, utc
 
@@ -20,7 +19,7 @@ def danatime(value):
     is_today = True
 
   is_this_year = False
-  if value.date().year = datetime.today().year
+  if value.date().year = datetime.today().year:
     is_this_year = True
 
   if value < now:
@@ -51,12 +50,13 @@ def danatime(value):
           ) % {'count': count}
       else:
         # Up to 24 hours ago on the same day
-        return _("%(hour)s:%(minute)s %p") % {'hour': value.time().hour, 'minute': value.time().minute}
+        return _("%(hour)s:%(minute)s "
+          ) % {'hour': value.time().hour % 12, 
+          'minute': value.time().minute} + value.strftime("%p").lower()
     elif is_this_year:
       return _(value.strftime("%d %b").lstrip('0'))
     else:
-      return _(value.strftime(
-        "%(day)d/%(month)d/%(year)d"
+      return _("%(day)d/%(month)d/%(year)d"
         ) % {'day': value.date().day, 
         'month': value.date().month, 
-        'year': value.date().year})
+        'year': value.date().year}
