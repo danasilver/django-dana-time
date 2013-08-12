@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django import template
 from django.utils.translation import pgettext, ungettext, ugettext as _
 from django.utils.timezone import is_aware, utc
