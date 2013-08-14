@@ -26,34 +26,35 @@ def danatime(value):
   if value < now:
     # Check that value is in the past
     delta = now - value
-    if delta.seconds == 0:
-      # Now
-      return _('now')
-    elif delta.seconds < 60:
-      # One or multiple seconds
-      # \u00a0 is a nonbreaking space
-      return ungettext(
-        'a second ago', '%(count)s\u00a0seconds ago', delta.seconds
-        ) % {'count': delta.seconds}
-    elif delta.seconds // 60 < 60:
-      # One or multiple minutes
-      count = delta.seconds // 60
-      return ungettext(
-        'a minute ago', '%(count)s\u00a0minutes ago', count
-        ) % {'count': count}
-    elif is_today:
-      # Same day
-      if delta.seconds // (60 * 60) <= 6:
-        # Up to 6 hours ago on the same day
-        count = delta.seconds // (60 * 60)
+    if delta.days < 1:
+      if delta.seconds == 0:
+        # Now
+        return _('now')
+      elif delta.seconds < 60:
+        # One or multiple seconds
+        # \u00a0 is a nonbreaking space
         return ungettext(
-          'an hour ago', '%(count)s\u00a0hours ago', count
+          'a second ago', '%(count)s\u00a0seconds ago', delta.seconds
+          ) % {'count': delta.seconds}
+      elif delta.seconds // 60 < 60:
+        # One or multiple minutes
+        count = delta.seconds // 60
+        return ungettext(
+          'a minute ago', '%(count)s\u00a0minutes ago', count
           ) % {'count': count}
-      else:
-        # Up to 24 hours ago on the same day
-        return _("%(hour)s:%(minute)s "
-          ) % {'hour': value.time().hour % 12, 
-          'minute': value.time().minute} + value.strftime("%p").lower()
+      elif is_today:
+        # Same day
+        if delta.seconds // (60 * 60) <= 6:
+          # Up to 6 hours ago on the same day
+          count = delta.seconds // (60 * 60)
+          return ungettext(
+            'an hour ago', '%(count)s\u00a0hours ago', count
+            ) % {'count': count}
+        else:
+          # Up to 24 hours ago on the same day
+          return _("%(hour)s:%(minute)s "
+            ) % {'hour': value.time().hour % 12, 
+            'minute': value.time().minute} + value.strftime("%p").lower()
     elif is_this_year:
       return _(value.strftime("%b ")) + "%(date)s" % {'date': value.date().day}
     else:
