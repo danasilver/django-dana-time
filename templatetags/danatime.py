@@ -1,30 +1,21 @@
 from __future__ import unicode_literals
 from django import template
 from django.utils.translation import pgettext, ungettext, ugettext as _
-from django.utils.timezone import is_aware, utc
-
+from django.utils import timezone
 from datetime import date, datetime
 
 register = template.Library()
 
 @register.filter
 def danatime(value):
-  if not isinstance(value, date):
-    # Check if the given value is of form date
-    return value
+    if not isinstance(value, datetime):
+        return value
 
-  now = datetime.now(utc if is_aware(value) else None)
+    now = timezone.now()
+    # TODO: allow for future dates
+    if value > now:
+        return value
 
-  is_today = False
-  if value.date() == datetime.today().date():
-    is_today = True
-
-  is_this_year = False
-  if value.date().year == datetime.today().year:
-    is_this_year = True
-
-  if value < now:
-    # Check that value is in the past
     delta = now - value
     if delta.days < 1:
       if delta.seconds == 0:
