@@ -55,10 +55,10 @@ def danatime(value):
           return _("%(hour)s:%(minute)s "
             ) % {'hour': value.time().hour % 12, 
             'minute': value.time().minute} + value.strftime("%p").lower()
-    elif is_this_year:
-      return _(value.strftime("%b ")) + "%(date)s" % {'date': value.date().day}
-    else:
-      return _("%(day)s/%(month)s/%(year)s"
-        ) % {'day': value.date().day, 
-        'month': value.date().month, 
-        'year': int(str(value.date().year)[2:])}
+      elif is_this_year:
+        return _(value.strftime("%b ")) + "%(date)s" % {'date': value.date().day}
+      else:
+        return _("%(day)s/%(month)s/%(year)s"
+          ) % {'day': value.date().day, 
+          'month': value.date().month, 
+          'year': int(str(value.date().year)[2:])}
