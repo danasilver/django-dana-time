@@ -26,7 +26,7 @@ Use the filter:
 | 2 - 60 minutes          | 2 - 60 minutes ago |
 | 1 hour | an hour ago        |
 | 2 - 6 hours | 2 - 6 hours ago    |
-| 6 - 24 hours, same day  | 4:26 pm (12 hour)  |
-| 6 - 24 hours, yesterday | yesterday at 4:26 pm (12 hour)  |
+| 6 - 24 hours, same day  | 4:26pm (12 hour)  |
+| 6 - 24 hours, yesterday | 4:26pm yesterday (12 hour)  |
 | \> 24 hours, same year  | Aug 10             |
 | previous year           | 8/10/12            |
