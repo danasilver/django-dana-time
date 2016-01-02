@@ -1,3 +1,8 @@
-*.db
-*.pyc
-*.DS_STORE
+# OS X
+.DS_Store
+
+# Python
+*.py[co]
+dist/
+*.egg-info/
+.tox/
