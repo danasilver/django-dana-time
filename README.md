@@ -4,6 +4,10 @@ Short, readable datetime filters.
 
 ### Install
 
+```
+$ pip install django-dana-time
+```
+
 ### Usage
 
 ```python
