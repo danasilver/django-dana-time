@@ -1,4 +1,4 @@
-# Django Dana Time
+# Django Dana Time [![Build Status](https://travis-ci.org/danasilver/django-dana-time.svg?branch=master)](https://travis-ci.org/danasilver/django-dana-time)
 
 Short, readable datetime filters.
 
@@ -86,3 +86,18 @@ This particular format yields `August 8, 2012`.
 
 See Django's [available format strings](https://docs.djangoproject.com/en/1.9/ref/templates/builtins/#date)
 for help.
+
+### Testing
+
+[![Build Status](https://travis-ci.org/danasilver/django-dana-time.svg?branch=master)](https://travis-ci.org/danasilver/django-dana-time)
+
+Tested with all combinations of the latest versions of Python 2.7 and 3.4 with
+Django 1.7, 1.8, and 1.9.
+
+After installing Django, run the tests with:
+
+```sh
+$ python runtests.py
+```
+
+Install tox and run `tox` to test in all environments. This is what the CI does.
